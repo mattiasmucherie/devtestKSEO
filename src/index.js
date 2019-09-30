@@ -5,6 +5,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const cron = require("node-cron");
+const path = require("path");
 
 const { startDatabase } = require("./db/mongo");
 const {
@@ -24,6 +25,9 @@ const app = express();
 // Set the port of the application
 const port = process.env.PORT || 3001;
 
+// Serve the static files from the React app
+app.use(express.static(path.join(__dirname, "/../client/build")));
+
 // Adding helmet to the app. Helmet helps you secure your Express apps by setting various HTTP headers
 app.use(helmet());
 
@@ -36,9 +40,6 @@ app.use(cors());
 // adding morgan to log HTTP requests
 app.use(morgan("combined"));
 
-// Use Auth0 credentials in app
-app.use(jwtCheck);
-
 app.use(function(err, req, res, next) {
   if (err.name === "UnauthorizedError") {
     res.status(err.status).send({ message: err.message });
@@ -48,12 +49,12 @@ app.use(function(err, req, res, next) {
 });
 
 //defing an endpoint to return all customers
-app.get("/", async (req, res) => {
+app.get("/api/", jwtCheck, async (req, res) => {
   res.send(await getCustomers());
 });
 
 // Filter returns vehicles based on status, vehicles or customer
-app.get("/search", async (req, res) => {
+app.get("/api/search", jwtCheck, async (req, res) => {
   const queryProperty = Object.keys(req.query)[0];
   switch (queryProperty) {
     case "status":
@@ -68,6 +69,10 @@ app.get("/search", async (req, res) => {
     default:
       res.status(404).send("Not found");
   }
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/../client/build/index.html"));
 });
 
 // Initiate database with initial data
