@@ -48,12 +48,12 @@ app.use(function(err, req, res, next) {
   next();
 });
 
-//defing an endpoint to return all customers
+//defing an endpoint to return all customers, secured by jwtCheck
 app.get("/api/", jwtCheck, async (req, res) => {
   res.send(await getCustomers());
 });
 
-// Filter returns vehicles based on status, vehicles or customer
+// Filter returns vehicles based on status, vehicles or customer, secured by jwtCheck
 app.get("/api/search", jwtCheck, async (req, res) => {
   const queryProperty = Object.keys(req.query)[0];
   switch (queryProperty) {
@@ -71,6 +71,7 @@ app.get("/api/search", jwtCheck, async (req, res) => {
   }
 });
 
+// Handles any requests that are not handledd above.
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname + "/../client/build/index.html"));
 });
