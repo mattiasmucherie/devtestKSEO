@@ -64,7 +64,7 @@ app.get("/api/search", jwtCheck, async (req, res) => {
       res.send(await getVehicle(req.query.vehicle));
       break;
     case "customer":
-      res.send(await getCustomer(req.query.nickName));
+      res.send(await getCustomer(req.query.customer));
       break;
     default:
       res.status(404).send("Not found");
