@@ -4,22 +4,22 @@ class CustomersVeh extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: []
+      customer: [],
+      loading: false
     };
   }
 
   componentDidMount() {
-    console.log(this.props);
     this.getList();
   }
   componentDidUpdate(prevProps) {
     if (prevProps.nickname !== this.props.nickname) {
-      console.log("New prop has arrived!");
       this.getList();
     }
   }
 
   getList = () => {
+    this.setState({ loading: true });
     fetch(
       `https://arcane-fjord-86837.herokuapp.com/api/search?customer=${this.props.nickname}`,
       {
@@ -32,15 +32,52 @@ class CustomersVeh extends Component {
       }
     )
       .then(res => res.json())
-      .then(list => {
-        this.setState({ list });
-        console.log(list);
+      .then(customer => {
+        this.setState({ customer });
+        this.setState({ loading: false });
       });
   };
 
   render() {
-    //const { list } = this.state;
-    return <p>{this.props.nickname}</p>;
+    let customer = (
+      <tr>
+        <td>
+          <div className="loading" style={{ height: "100px" }}>
+            {" "}
+          </div>
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+    );
+    if (this.state.customer.length !== 0 && !this.state.loading) {
+      customer = this.state.customer[0].vehicles.map(veh => {
+        return (
+          <tr
+            key={veh.vin}
+            className={veh.status === "online" ? "success" : "danger"}
+          >
+            <td>{veh.vin}</td>
+            <td>{veh.reg}</td>
+            <td>{veh.status}</td>
+          </tr>
+        );
+      });
+    }
+    return (
+      <div className="container table-responsive">
+        <table className="table table-condensed">
+          <thead>
+            <tr>
+              <th>Vin</th>
+              <th>Reg</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>{customer}</tbody>
+        </table>
+      </div>
+    );
   }
 }
 export default CustomersVeh;

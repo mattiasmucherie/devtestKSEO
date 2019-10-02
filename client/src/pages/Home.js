@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import VehicleCard from "../components/vehicleCard";
 
 class Home extends Component {
   constructor(props) {
@@ -28,36 +29,26 @@ class Home extends Component {
 
   render() {
     const { list } = this.state;
-    let vehicles = <p>Loading...</p>;
+    let vehicles = (
+      <div className="loading" style={{ height: "200px" }}>
+        {" "}
+      </div>
+    );
     if (list.length !== 0) {
       let listOfVehicles = [];
       list.map(cust => {
         listOfVehicles = [...listOfVehicles, ...cust.vehicles];
       });
       vehicles = listOfVehicles.map(veh => {
-        let status = (
-          <span
-            className={`label label-${
-              veh.status === "online" ? "success" : "danger"
-            }`}
-          >
-            {veh.status}
-          </span>
-        );
-
         return (
-          <div key={veh.vin} className="col-sm-6 col-md-3">
-            <div className="thumbnail">
-              <div className="caption">
-                <h3>{veh.reg}</h3>
-                <p>{veh.vin}</p>
-                <p>{status}</p>
-              </div>
-            </div>
-          </div>
+          <VehicleCard
+            key={veh.vin}
+            vin={veh.vin}
+            reg={veh.reg}
+            status={veh.status}
+          ></VehicleCard>
         );
       });
-      console.log("This is vehciles", listOfVehicles);
     }
     return (
       <section>

@@ -3,8 +3,9 @@ import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Customers from "./pages/Customers";
+import Status from "./pages/Status";
 import Header from "./components/header";
-import Footer from "./components/footer";
+
 function App() {
   return (
     <BrowserRouter>
@@ -18,11 +19,10 @@ function App() {
             <Customers></Customers>
           </Route>
           <Route exact path="/status">
-            {/* Incoming page */}
+            <Status></Status>
           </Route>
         </Switch>
       </c-main-content>
-      <Footer></Footer>
     </BrowserRouter>
   );
 }

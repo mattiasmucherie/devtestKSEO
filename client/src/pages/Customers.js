@@ -36,7 +36,11 @@ class Customers extends Component {
   render() {
     const { list } = this.state;
 
-    let customers = <p>Loading...</p>;
+    let customers = (
+      <div className="loading" style={{ height: "200px" }}>
+        {" "}
+      </div>
+    );
     if (list.length !== 0) {
       customers = list.map(cust => {
         return (
