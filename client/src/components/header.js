@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import "./header.css";
 
 function Header() {
   return (
@@ -10,25 +11,27 @@ function Header() {
         site-url="/"
       ></c-corporate-header>
 
-      <c-main-navigation>
-        <primary-items>
-          <nav-item>
-            <NavLink to="/" activeClassName="active">
-              Home
-            </NavLink>
-          </nav-item>
-          <nav-item>
-            <NavLink to="/customers" activeClassName="active">
-              Customers
-            </NavLink>
-          </nav-item>
-          <nav-item>
-            <NavLink to="/status" activeClassName="active">
-              Status
-            </NavLink>
-          </nav-item>
-        </primary-items>
-      </c-main-navigation>
+      <div className="navbar-container container">
+        <NavLink to="/" activeClassName="active" className="navbar-element">
+          Home
+        </NavLink>
+
+        <NavLink
+          to="/customers"
+          activeClassName="active"
+          className="navbar-element"
+        >
+          Customers
+        </NavLink>
+
+        <NavLink
+          to="/status"
+          activeClassName="active"
+          className="navbar-element"
+        >
+          Status
+        </NavLink>
+      </div>
     </>
   );
 }
