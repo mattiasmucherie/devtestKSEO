@@ -63,6 +63,7 @@ async function getStatus(status) {
 }
 
 async function updateStatus() {
+  //Get a random truck
   const database = await getDatabase();
   const test = await database
     .collection(collectionName)
@@ -70,6 +71,8 @@ async function updateStatus() {
     .toArray();
   const amountOfTrucks = test[0].vehicles.length;
   const truckIndex = Math.floor(Math.random() * amountOfTrucks);
+
+  // Change status of random truck
   const vin = test[0].vehicles[truckIndex].vin;
   const id = test[0]._id;
   const currentStatus = test[0].vehicles[truckIndex].status;

@@ -12,6 +12,7 @@ class Home extends Component {
   componentDidMount() {
     this.getList();
   }
+
   getList = () => {
     fetch("https://arcane-fjord-86837.herokuapp.com/api/", {
       method: "GET",
@@ -29,11 +30,15 @@ class Home extends Component {
 
   render() {
     const { list } = this.state;
+
+    // Show loading status while loading the list
     let vehicles = (
       <div className="loading" style={{ height: "200px" }}>
         {" "}
       </div>
     );
+
+    // When loading is done, insert VehicleCards
     if (list.length !== 0) {
       let listOfVehicles = [];
       list.map(cust => {

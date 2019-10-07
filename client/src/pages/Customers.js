@@ -34,8 +34,9 @@ class Customers extends Component {
   };
 
   render() {
-    const { list } = this.state;
+    // "customers" represent the available customers while "customer" is the table of a clicked customer.
 
+    const { list } = this.state;
     let customers = (
       <div className="loading" style={{ height: "200px" }}>
         {" "}

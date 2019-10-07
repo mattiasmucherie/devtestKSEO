@@ -38,6 +38,8 @@ class Status extends Component {
 
   render() {
     let vehicles = null;
+
+    // Show loading status while loading the list
     if (this.state.loading) {
       vehicles = (
         <div className="loading" style={{ height: "200px" }}>
@@ -46,6 +48,7 @@ class Status extends Component {
       );
     }
 
+    // When loading is done, insert VehicleCards
     if (!this.state.loading && this.state.list.length !== 0) {
       vehicles = this.state.list.map(veh => {
         return (
