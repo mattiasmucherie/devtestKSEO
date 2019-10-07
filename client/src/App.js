@@ -11,17 +11,17 @@ import Header from "./components/header";
 function App() {
   return (
     <BrowserRouter>
-      <Header></Header>
+      <Header />
       <c-main-content>
         <Switch>
           <Route exact path="/customers">
-            <Customers></Customers>
+            <Customers />
           </Route>
           <Route exact path="/status">
-            <Status></Status>
+            <Status />
           </Route>
-          <Route path="/">
-            <Home></Home>
+          <Route exact path="/">
+            <Home />
           </Route>
         </Switch>
       </c-main-content>
