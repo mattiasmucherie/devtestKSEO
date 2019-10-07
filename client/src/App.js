@@ -20,6 +20,7 @@ class App extends React.Component {
   }
 
   getToken() {
+    // This token should of course be hidden but for demo purposes and transparity I left it here.
     var options = {
       method: "POST",
       headers: { "content-type": "application/json" },
