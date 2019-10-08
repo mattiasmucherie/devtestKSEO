@@ -31,7 +31,9 @@ class Home extends Component {
       .then(res => res.json())
       .then(list => {
         this.setState({ list });
-      });
+      })
+      .catch(err => console.log(err))
+      .catch(err => console.log(err));
   };
 
   render() {

@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Customers from "./pages/Customers";
@@ -33,6 +32,7 @@ class App extends React.Component {
       .then(token => {
         this.setState({ token: token.access_token });
       })
+      .catch(err => console.log(err))
       .catch(err => console.log(err));
   }
 

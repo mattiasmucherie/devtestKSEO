@@ -32,6 +32,7 @@ class Customers extends Component {
       .then(list => {
         this.setState({ list });
       })
+      .catch(err => console.log(err))
       .catch(err => console.log(err));
   };
 

@@ -26,7 +26,9 @@ class Status extends Component {
       .then(res => res.json())
       .then(list => {
         this.setState({ list, loading: false });
-      });
+      })
+      .catch(err => console.log(err))
+      .catch(err => console.log(err));
   };
 
   handleClick = e => {
