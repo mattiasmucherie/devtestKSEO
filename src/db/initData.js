@@ -18,7 +18,7 @@ const johans = {
   ]
 };
 const haralds = {
-  name: "Haralds Väredtransporter AB",
+  name: "Haralds Värdetransporter AB",
   nickName: "haralds",
   address: "Budgetvägen 1, 333 33 Uppsala",
   vehicles: [
