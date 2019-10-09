@@ -65,9 +65,7 @@ Morgan is used in order to log the incoming HTTP requests. The log is currently 
 
 ## Front-end
 
-The front-end is built with React.
-I did not setup any special webpack config here because I did not think that is was necessary.
-
+The front-end is built with React and a simple `create-react-app` setup was used.
 There are three different pages:
 
 - Home `/`. On this page all trucks of all customers are loaded and their status is displayed.
@@ -75,11 +73,11 @@ There are three different pages:
 - `/status`. Here you can click on either "online" or "offline" and it will display the trucks with that status.
 
 I decided to use the Scania Corporate UI. However I found some compatibilities issues which I had to resolve with my own CSS(`header.css`).
-Due to the scope of the project I decided only to log the log the errors in the console. A GUI with the different kind of errors when they appear would have been better.
+Due to the scope of the project I decided only to log the log the errors in the console. A GUI with the different kind of errors when they appear would of course be necessary.
 
 ## Deployment
 
 I chose to deploy with the help of [Heroku](http://www.heroku.com) which is a platform as a service which allows me to build, run and operate aplications on the cloud.
-I connected it to this GitHub repo and everytime a new commit came in, the app is built and deployed automaticaly.
+I connected it to this GitHub repo and everytime a new commit comes in, the app is built and deployed automaticaly.
 The command to deploy is then as simple as `git push`.
 Tests can of course be set up so that it only builds and deploys when tests are successful.
