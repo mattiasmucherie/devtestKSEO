@@ -81,3 +81,8 @@ I chose to deploy with the help of [Heroku](http://www.heroku.com) which is a pl
 I connected it to this GitHub repo and everytime a new commit comes in, the app is built and deployed automaticaly.
 The command to deploy is then as simple as `git push`.
 Tests can of course be set up so that it only builds and deploys when tests are successful.
+
+## Run locally
+
+If you want to run this locally you need to run the back-end and the front-end seperatly.
+For the backend, run `npm install` in `/` and then `node src`. For the front-end, you need to move inside `/client/` and run `npm install` and `npm start`.
